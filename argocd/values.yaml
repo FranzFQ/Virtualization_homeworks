@@ -1,0 +1,12 @@
+global:
+  domain: argocd.fjqd.local
+
+configs:
+  params:
+    server.insecure: true
+  cm:
+    timeout.reconciliation: 60s
+
+server:
+  ingress:
+    enabled: false

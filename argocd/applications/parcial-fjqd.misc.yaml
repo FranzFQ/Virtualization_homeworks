@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: parcial-fjqd-misc
+  namespace: argocd-fjqd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/FranzFQ/Virtualization_homeworks.git
+    targetRevision: hw-06
+    path: apps/misc
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: parcial-fjqd
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
