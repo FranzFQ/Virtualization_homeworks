@@ -1,0 +1,41 @@
+
+adminUser: admin
+
+persistence:
+  enabled: false
+
+grafana.ini:
+  server:
+    domain: grafana.fjqd.local
+    root_url: http://grafana.fjqd.local
+
+datasources:
+  datasources.yaml:
+    apiVersion: 1
+    datasources:
+      - name: Prometheus
+        uid: prometheus
+        type: prometheus
+        access: proxy
+        url: http://prometheus-server.monitoring-fjqd.svc.cluster.local
+        isDefault: true
+      - name: Loki
+        uid: loki
+        type: loki
+        access: proxy
+        url: http://loki.monitoring-fjqd.svc.cluster.local:3100
+
+sidecar:
+  dashboards:
+    enabled: true
+    label: grafana_dashboard
+    labelValue: "1"
+
+ingress:
+  enabled: true
+  ingressClassName: traefik
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+  hosts:
+    - grafana.fjqd.local
+  path: /

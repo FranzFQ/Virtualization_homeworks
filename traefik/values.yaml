@@ -12,3 +12,10 @@ providers:
     enabled: true
     publishedService:
       enabled: true
+
+log:
+  level: INFO
+
+accessLog:
+  enabled: true
+  format: json
